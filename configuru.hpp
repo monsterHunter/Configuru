@@ -2327,9 +2327,20 @@ namespace configuru
 	{
 		bool is_object = false;
 
+		Config ret;
+		tag(ret);
+
 		if (_options.implicit_top_object)
 		{
 			auto state = get_state();
+			if (_options.allow_macro) {
+				while (1) {
+					skip_white_ignore_comments();
+					if (_ptr[0] != '#') break;
+					parse_macro(ret);
+				}
+			}
+
 			skip_white_ignore_comments();
 
 			if (IDENT_STARTERS[static_cast<uint8_t>(_ptr[0])] && !is_reserved_identifier(_ptr)) {
@@ -2342,9 +2353,6 @@ namespace configuru
 
 			set_state(state); // restore
 		}
-
-		Config ret;
-		tag(ret);
 
 		if (is_object) {
 			parse_object_contents(ret);
