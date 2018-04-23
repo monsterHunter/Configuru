@@ -25,6 +25,7 @@ find_package(Boost REQUIRED filesystem system)
 add_definitions(-DBOOST_FILESYSTEM_VERSION=3)
 include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
 include_directories(SYSTEM .)
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../")
 
 MESSAGE(STATUS "CMAKE_BUILD_TYPE: ${CMAKE_BUILD_TYPE}")
 MESSAGE(STATUS "CMAKE_CXX_COMPILER_ID: ${CMAKE_CXX_COMPILER_ID}")

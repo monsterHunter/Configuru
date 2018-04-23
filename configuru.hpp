@@ -2332,7 +2332,6 @@ namespace configuru
 
 		if (_options.implicit_top_object)
 		{
-			auto state = get_state();
 			if (_options.allow_macro) {
 				while (1) {
 					skip_white_ignore_comments();
@@ -2341,6 +2340,7 @@ namespace configuru
 				}
 			}
 
+			auto state = get_state();
 			skip_white_ignore_comments();
 
 			if (IDENT_STARTERS[static_cast<uint8_t>(_ptr[0])] && !is_reserved_identifier(_ptr)) {
